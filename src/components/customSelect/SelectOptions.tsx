@@ -12,8 +12,10 @@ export default function SelectOptions() {
   const handleFilterButtonClick = () => {
     setShowFilteredOptions(showFilteredOptions => !showFilteredOptions)
   }
-
-  const showModalWithFilterOptions = () => {}
+  const handleItemClick = (filter: string) => {
+    console.log(filter)
+    handleFilterButtonClick()
+  }
   return (
     <Fragment>
       <Button
@@ -26,7 +28,13 @@ export default function SelectOptions() {
           <img src={caretDown} alt="caret-down" />
         </span>
       </Button>
-      {showFilteredOptions ? null : <CustomModal />}
+      {showFilteredOptions ? (
+        <CustomModal
+          show={showFilteredOptions}
+          handleClose={handleFilterButtonClick}
+          handleItemClick={handleItemClick}
+        />
+      ) : null}
     </Fragment>
   )
 }
